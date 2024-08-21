@@ -1,0 +1,179 @@
+#ifndef LIST_HPP
+#define LIST_HPP
+
+#include <iostream>
+
+#include "ListNode.hpp"
+
+template<typename NODE>
+class List
+{
+public:
+    List();
+    ~List();
+    void insertAtFront(const NODE &);
+    void insertAtBack(const NODE &);
+    bool removeFromFront(NODE &);
+    bool removeFromBack(NODE &);
+    void concatenate(List<char> &, const List<char> &);
+    bool isEmpty() const;
+    void print() const;
+private:
+    ListNode<NODE> *firstPtr_;
+
+    ListNode<NODE> *getNewNode(const NODE &);
+};
+
+template<typename NODE>
+List<NODE>::List()
+    : firstPtr_(0)
+{
+}
+
+template<typename NODE>
+List<NODE>::~List()
+{
+    if (!isEmpty()) {
+        std::cout << "Destroying nodes...\n";
+
+        ListNode<NODE> *currentPtr = firstPtr_;
+        ListNode<NODE> *tempPtr = nullptr;
+
+        while (currentPtr != nullptr) {
+            tempPtr = currentPtr;
+            std::cout << tempPtr->data << std::endl;
+            currentPtr = currentPtr->nextPtr_;
+            delete tempPtr;
+        }
+    }
+    std::cout << "All nodes destroyed." << std::endl;
+}
+
+template<typename NODE>
+void
+List<NODE>::insertAtFront(const NODE &value)
+{
+    ListNode<NODE> *newPtr = getNewNode(value);
+
+    if (isEmpty()) {
+        firstPtr_ = newPtr;
+    } else {
+        newPtr->nextPtr_ = firstPtr_;
+        firstPtr_ = newPtr;
+    }
+}
+
+template<typename NODE>
+void
+List<NODE>::insertAtBack(const NODE &value)
+{
+    ListNode<NODE> *newPtr = getNewNode(value);
+
+    if (isEmpty()) {
+        firstPtr_ = newPtr;
+    } else {
+        List<NODE> *lastPtr = firstPtr_;
+
+        while (lastPtr->nextPtr_ != nullptr) {
+            lastPtr = lastPtr->nextPtr_;
+        }
+        lastPtr->nextPtr = newPtr;
+        lastPtr = newPtr;
+    }
+}
+
+template<typename NODE>
+bool
+List<NODE>::removeFromFront(NODE &value)
+{
+    if (isEmpty()) {
+        return false;
+    } else {
+        ListNode<NODE> *tempPtr = firstPtr_;
+
+        if (firstPtr_->nextPtr == nullptr) {
+            firstPtr_ = nullptr;
+        } else {
+            firstPtr_ = firstPtr_->nextPtr_;
+        }
+
+        value = tempPtr->data_;
+        delete tempPtr;
+        return true;
+    }
+}
+
+template<typename NODE>
+bool
+List<NODE>::removeFromBack(NODE &value)
+{
+    if (isEmpty()) {
+        return false;
+    } 
+    List<NODE> *lastPtr = firstPtr_;
+
+    while (lastPtr->nextPtr_ != nullptr) {
+        lastPtr = lastPtr->nextPtr_;
+    }
+    ListNode<NODE> *tempPtr = lastPtr;
+
+    if (firstPtr_ == lastPtr) {
+        firstPtr_ = nullptr;
+    } else {
+        List<NODE> *currentPtr = firstPtr_;
+
+        while (currentPtr->nextPtr_ != lastPtr) {
+            currentPtr = currentPtr->nextPtr_;
+        }
+        lastPtr = currentPtr;
+        lastPtr->nextPtr = nullptr;
+    }
+    value = tempPtr->data_;
+    delete tempPtr;
+    return true;
+}
+
+template<typename NODE>
+bool
+List<NODE>::isEmpty() const
+{
+    return firstPtr_ == nullptr;
+}
+
+template<typename NODE>
+void
+List<NODE>::print() const
+{
+    if (isEmpty()) {
+        std::cout << "The list is empty." << std::endl;
+    } else {
+        ListNode<NODE> *currentPtr = firstPtr_;
+        std::cout << "The list is: ";
+        while (currentPtr != nullptr) {
+            std::cout << currentPtr->data_ << ' ';
+            currentPtr = currentPtr->nextPtr_;
+        }
+        std::cout << std::endl;
+    }
+}
+
+template<typename NODE>
+ListNode<NODE> *
+List<NODE>::getNewNode(const NODE &value)
+{
+    return new ListNode<NODE>(value);
+}
+
+template<typename NODE>
+void 
+List<NODE>::concatenate(List<char> &first, const List<char> &second)
+{
+    ListNode<char> *currentPtr = second.firstPtr_;
+    while (currentPtr != nullptr) {
+        first.insertAtBack(currentPtr->data_);
+        currentPtr = currentPtr->nextPtr_;
+    }
+}
+
+#endif
+
