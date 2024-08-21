@@ -1,0 +1,2 @@
+If dynamic allocation defined ass new [] and deleted by delete (not delet []) than it will deallocate only first element's allocation, in order to deallocate all array elements' allocations we must delete it by delete []. For individual elements of new can be used delete.
+

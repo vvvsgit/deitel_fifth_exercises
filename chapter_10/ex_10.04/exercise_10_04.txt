@@ -1,0 +1,3 @@
+A friendship is defined in order to get access the private members of the class.
+It is not good, because it breaks the conception of encapsulation.
+

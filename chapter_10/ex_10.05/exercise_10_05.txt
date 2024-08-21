@@ -1,0 +1,2 @@
+No, it can't be defined two default constructors for one class.
+
