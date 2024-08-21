@@ -1,0 +1,24 @@
+
+Account
+The initial balance is 1000
+Enter amount to withdraw: 
+The balance after withdraw is 500
+Enter amount to deposit: 
+The balance after deposit is 1500
+
+SavingsAccount
+The initial balance is 1000
+The balance after calculating interest is 1090
+Enter amount to withdraw: 
+The balance after withdraw is 940
+Enter amount to deposit: 
+The balance after deposit is 1190
+
+CheckingAccount
+The initial balance is 1000
+Enter amount to withdraw: 
+The balance after withdraw is 666.99
+Enter amount to deposit: 
+The balance after deposit is 1124.98
+
+

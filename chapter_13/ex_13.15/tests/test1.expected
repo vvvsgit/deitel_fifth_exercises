@@ -1,0 +1,27 @@
+
+Package details
+anun1 ---> anun2
+azganun1 ---> azganun2
+qaxaq1 ---> qaxaq2
+nahang1 ---> nahang2
+zip1 ---> zip2
+The cost is 100
+
+Package details
+anun2 ---> anun3
+azganun2 ---> azganun3
+qaxaq2 ---> qaxaq3
+nahang2 ---> nahang3
+zip2 ---> zip3
+The cost is 230
+
+Package details
+anun3 ---> anun4
+azganun3 ---> azganun4
+qaxaq3 ---> qaxaq4
+nahang3 ---> nahang4
+zip3 ---> zip4
+The cost is 125
+
+The Total cost for all packages is 455
+
